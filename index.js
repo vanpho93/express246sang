@@ -1,4 +1,8 @@
 var express = require('express');
+
+var bodyParser = require('body-parser');
+var parser = bodyParser.urlencoded({extended: false});
+
 var app = express();
 app.listen(3000);
 
@@ -16,7 +20,7 @@ app.get('/info/:id/:username', function(req, res){
 });
 
 app.get('/dangnhap', function(req, res){
-
+  res.render("dangnhap");
 });
 
 app.get('/chao/:ten', function(req, res){
@@ -48,6 +52,12 @@ app.get('/tinh/:pt/:a/:b', function(req, res){
   // res.send(`${a} ${pt} ${b} = ${kq}`);
   var phepTinh = new PhepTinh(pt, a, b);
   res.send(phepTinh.getMessage());
+});
+
+app.post('/xulydangnhap', parser, function(req, res){
+  var name = req.body.ten;
+  var age = req.body.tuoi;
+  res.send(name + age);
 });
 
 function PhepTinh(pt, a, b){
