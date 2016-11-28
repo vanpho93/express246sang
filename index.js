@@ -9,6 +9,10 @@ app.listen(3000);
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+app.get('/home', function(req, res){
+  res.render('home', {tuoi: 15});
+});
+
 app.get('/', function(request, response){
   response.render("trangchu");
 });
@@ -57,8 +61,20 @@ app.get('/tinh/:pt/:a/:b', function(req, res){
 app.post('/xulydangnhap', parser, function(req, res){
   var name = req.body.ten;
   var age = req.body.tuoi;
-  res.send(name + age);
+  res.render("welcome", {ten: name, tuoi: age});
 });
+
+app.post('/xulytinhtoan', parser, function(req, res){
+  var pt = req.body.pt;
+  var a = parseInt(req.body.a);
+  var b = parseInt(req.body.b);
+  var phepTinh = new PhepTinh(pt, a, b);
+  res.send(phepTinh.getMessage());
+});
+
+app.get('/tinhtoan', function(req, res){
+  res.render('tinhtoan');
+})
 
 function PhepTinh(pt, a, b){
   this.phepTinh = pt;
