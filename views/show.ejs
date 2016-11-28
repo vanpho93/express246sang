@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <%mang.forEach(function(person){%>
+        <div class="div-person">
+            <h1>Ten: <%=person.name%></h1>
+            <p>Tuoi:
+                <%=person.age%>
+            </p>
+            <p>Dia chi:
+                <%=person.address%>
+            </p>
+        </div>
+        <%});%>
+</body>
+
+</html>

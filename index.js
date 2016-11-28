@@ -4,9 +4,42 @@ var bodyParser = require('body-parser');
 var parser = bodyParser.urlencoded({extended: false});
 
 var app = express();
+app.use(express.static('public'));
 app.listen(3000);
 
+function Person(name, age, address){
+  this.name = name;
+  this.age = age;
+  this.address = address;
+}
+
+var arr = [
+  new Person('A', 18, '90 LTR'),
+  new Person('B', 20, '30 CMT8'),
+  new Person('A', 18, '90 LTR'),
+  new Person('B', 20, '30 CMT8')
+];
+
+function Phim(tenPhim, idPhim){
+  this.ten = tenPhim;
+  this.id = idPhim;
+}
+
+var phim1 = new Phim("React & Redux With ExpressJS", "iQ6BDyx7D4g");
+var phim2 = new Phim("Creating Forms with React and Redux", "q6NXa14o1f0");
+var phim3 = new Phim("Abstracting Form State with Redux Form", "eDTi7lYR1VU");
+var mangPhim = [phim1, phim2, phim3];
+
+app.get('/youtube', function(req, res){
+  res.render("youtube", {arrPhim: mangPhim});
+});
+
+app.get('/show', function(req, res){
+  res.render("show", {mang: arr});
+});
+
 app.set('view engine', 'ejs');
+
 app.set('views', './views');
 
 app.get('/home', function(req, res){

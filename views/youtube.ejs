@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Youtube film</title>
+  </head>
+  <body>
+    <%
+      arrPhim.forEach(function(phim){
+        %>
+        <h1><%=phim.ten%></h1>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=phim.id%>" frameborder="0" allowfullscreen></iframe>
+        <%
+      });
+    %>
+  </body>
+</html>
